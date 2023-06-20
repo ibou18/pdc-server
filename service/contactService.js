@@ -3,7 +3,7 @@ const express = require("express");
 const router = require("express").Router();
 const db = require("../configs/db");
 const AdminModel = db.admin;
-const ClientModel = db.clients;
+const adherentModel = db.adherents;
 const jwt = require("jsonwebtoken");
 const sendEmail = require("../utils/sendEmail");
 

@@ -1,7 +1,7 @@
 // const sendEmail = require("../utils/sendEmail");
 const db = require("../configs/db");
 const AdminModel = db.admin;
-const ClientModel = db.clients;
+const adherentModel = db.adherents;
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const sendEmail = require("../utils/sendEmail");
@@ -23,7 +23,7 @@ const createToken = (id) => {
 };
 
 router.post("/forgot-password", async (req, res, next) => {
-  let user = await ClientModel.findOne({ where: { email: req.body.email } });
+  let user = await adherentModel.findOne({ where: { email: req.body.email } });
   console.log("user ----------------------", user.id);
   if (!user) {
     return res

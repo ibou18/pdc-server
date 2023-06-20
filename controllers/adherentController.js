@@ -1,7 +1,7 @@
 const db = require("../configs/db");
 const BaseController = require("../packages/BaseController");
 
-class ClientController extends BaseController {
+class adherentController extends BaseController {
   model;
   includes = [];
   constructor(model) {
@@ -10,6 +10,6 @@ class ClientController extends BaseController {
   }
 }
 
-const Client = new ClientController(db.clients);
+const Adherent = new adherentController(db.adherents);
 
-module.exports = Client;
+module.exports = Adherent;

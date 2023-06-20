@@ -38,7 +38,7 @@ db.categories = require("../models/categoryModel")(sequelize, Sequelize);
 db.types = require("../models/typeModel")(sequelize, Sequelize);
 db.publications = require("../models/publicationModel")(sequelize, Sequelize);
 db.admin = require("../models/adminModel")(sequelize, Sequelize);
-db.clients = require("../models/clientModel")(sequelize, Sequelize);
+db.adherents = require("../models/adherentModel")(sequelize, Sequelize);
 db.countries = require("../models/country")(sequelize, Sequelize);
 db.paiements = require("../models/paiementModel")(sequelize, Sequelize);
 
@@ -46,8 +46,8 @@ db.paiements = require("../models/paiementModel")(sequelize, Sequelize);
 
 // Declaration des relations entre les models'
 
-db.clients.hasMany(db.paiements);
-db.paiements.belongsTo(db.clients);
+db.adherents.hasMany(db.paiements);
+db.paiements.belongsTo(db.adherents);
 
 db.admin.hasOne(db.publications, {
   foreignKey: {

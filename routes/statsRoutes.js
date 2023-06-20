@@ -6,7 +6,7 @@ const { requireAuth } = require("../middlewares/authMiddleware");
 const sequelize = require("sequelize");
 const paiementModel = db.paiements;
 const adminModel = db.admin;
-const clientModel = db.clients;
+const adherentModel = db.adherents;
 const publicationModel = db.publications;
 
 class StatsRoute extends BaseRoute {

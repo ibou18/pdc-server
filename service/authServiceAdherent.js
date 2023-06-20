@@ -1,7 +1,7 @@
 // const sendEmail = require("../utils/sendEmail");
 const bcrypt = require("bcrypt");
 const db = require("../configs/db");
-const ClientModel = db.clients;
+const adherentModel = db.adherents;
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const sendEmail = require("../utils/sendEmail");
@@ -21,8 +21,31 @@ const createToken = (id) => {
   });
 };
 
+router.post("/register-adherent", async (req, res) => {
+  const { firstName, lastName, email, password } = req.body;
+  try {
+    const data = await adherentModel.create({
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+    return res.status(200).send({
+      status: "success",
+      message: "data created successful",
+      data: data,
+    });
+  } catch (error) {
+    return res.status(400).send({
+      status: "error",
+      message: `Erreur un problème est survenu lors de l'opération`,
+      data: error,
+    });
+  }
+});
+
 router.post("/forgot-password", async (req, res, next) => {
-  let user = await ClientModel.findOne({ where: { email: req.body.email } });
+  let user = await adherentModel.findOne({ where: { email: req.body.email } });
   console.log("user ----------------------", user.id);
   if (!user) {
     return res
@@ -46,7 +69,7 @@ router.post("/forgot-password", async (req, res, next) => {
         text: messageBody,
       });
       console.log("USer", user);
-      ClientModel.update(
+      adherentModel.update(
         {
           tokens: resetToken,
         },
@@ -84,7 +107,7 @@ router.post("/reset-password/:token", async (req, res) => {
             .send({ status: "error", message: "Le token n'est pas valide" });
         } else {
           console.log("decodedToken", decodedToken);
-          user = await ClientModel.findOne({
+          user = await adherentModel.findOne({
             where: { id: decodedToken.id },
             attributes: {
               exclude: ["password"],
@@ -101,7 +124,7 @@ router.post("/reset-password/:token", async (req, res) => {
             const salt = await bcrypt.genSalt();
             const newPassword = bcrypt.hashSync(req.body.password, salt);
 
-            await ClientModel.update(
+            await adherentModel.update(
               {
                 password: newPassword,
               },

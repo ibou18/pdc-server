@@ -14,7 +14,7 @@ const { swaggerDocs: V1SwaggerDocs } = require("./v1/swagger");
 const adminsRoutes = require("./routes/adminRoutes");
 const publicationRoutes = require("./routes/publicationRoutes");
 const typeRoutes = require("./routes/typeRoutes");
-const clientRoutes = require("./routes/clientRoutes");
+const AdherentRoutes = require("./routes/AdherentRoutes");
 const countryRoutes = require("./routes/countryRoutes");
 const paiementRoutes = require("./routes/paiementRoutes");
 const Stripe = require("./service/stripe");
@@ -22,7 +22,7 @@ const Paypal = require("./service/paypal");
 const orangeMoney = require("./service/orangeMoney");
 const Stats = require("./routes/statsRoutes");
 const AuthService = require("./service/authService");
-const AuthServiceClient = require("./service/authServiceClient");
+const AuthServiceAdherent = require("./service/authServiceAdherent");
 const ContactService = require("./service/contactService");
 // const { checkUser, requireAuth } = require("./middleware/auth.middleware");
 
@@ -76,7 +76,7 @@ app.use(function (req, res, next) {
 app.use("/api/v1/admins", adminsRoutes);
 app.use("/api/v1/publications", publicationRoutes);
 app.use("/api/v1/types", typeRoutes);
-app.use("/api/v1/clients", clientRoutes);
+app.use("/api/v1/adherents", AdherentRoutes);
 app.use("/api/v1/countries", countryRoutes);
 app.use("/api/v1/paiements", paiementRoutes);
 app.use("/api/v1/stripes", Stripe);
@@ -84,7 +84,7 @@ app.use("/api/v1/paypals", Paypal);
 app.use("/api/v1/stats", Stats);
 app.use("/api/v1/orange-money", orangeMoney);
 app.use("/api/v1/auth/admins", AuthService);
-app.use("/api/v1/auth/clients", AuthServiceClient);
+app.use("/api/v1/auth/adherents", AuthServiceAdherent);
 app.use("/api/v1/contacts", ContactService);
 
 app.listen(process.env.PORT, () => {

@@ -2,10 +2,30 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 module.exports = (sequelize, Sequelize) => {
-  const maxAge = 3 * 24 * 60 * 60 * 1000; // 3 days
-  const Client = sequelize.define(
-    "client",
+  const maxAge = 1 * 24 * 60 * 60 * 1000; // 1 days
+  const Adherent = sequelize.define(
+    "adherents",
     {
+      firstName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      lastName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      adresse: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      birth_date: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
+      birthday_location: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -17,33 +37,55 @@ module.exports = (sequelize, Sequelize) => {
           msg: "Email address already exist",
         },
       },
+      phone: {
+        type: Sequelize.STRING,
+      },
+      profession: {
+        type: Sequelize.STRING,
+      },
+      citizen: {
+        type: Sequelize.STRING,
+      },
+      province: {
+        type: Sequelize.STRING,
+      },
+      civil_status: {
+        type: Sequelize.ENUM("Marié", "Divorcé", "Célibataire"),
+      },
+      gradutation: {
+        type: Sequelize.STRING,
+      },
+      politic_member: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      motivations: {
+        type: Sequelize.STRING,
+      },
+      amitions: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      is_sign_declaration: {
+        type: Sequelize.BOOLEAN,
+      },
       identifiant: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
         unique: {
           args: true,
           msg: "identifiant already exist",
         },
       },
-      firstName: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       image: {
         type: Sequelize.STRING,
         // allowNull: true,
       },
-      lastName: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      phone: {
-        type: Sequelize.STRING,
-      },
-      status: {
+      isActive: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
       },
+
       tokens: {
         type: Sequelize.STRING,
       },
@@ -57,9 +99,6 @@ module.exports = (sequelize, Sequelize) => {
             msg: "Please enter your pasword",
           },
         },
-      },
-      provider: {
-        type: Sequelize.STRING,
       },
       ref_2: {
         type: Sequelize.STRING,
@@ -110,5 +149,5 @@ module.exports = (sequelize, Sequelize) => {
       },
     }
   );
-  return Client;
+  return Adherent;
 };
