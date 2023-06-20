@@ -1,0 +1,38 @@
+PORT=5500
+
+DB_HOST=ep-little-waterfall-502870.us-east-2.aws.neon.tech
+DB_NAME=neondb
+DB_USER=barryaliou980
+DB_PASSWORD=8T6tvbsYVNJk
+
+
+TOKEN_SECRET=wertyuioppiuytdfbnmcvhjko765434567890098765edfghjkfghjkl12345678
+
+
+
+STRIPE_KEY=
+
+# CLIENT_URL=https://client-lagui.vercel.app
+CLIENT_URL=http://localhost:3000
+
+# SERVER_URL=https://cine-server-production.up.railway.app
+
+SERVER_URL=https://47c1-41-77-188-2.eu.ngrok.io
+
+SANDBOX_ACCOUNT=
+
+# PAYPAL_CLIENT_ID=
+
+# PAYPAL_SECRET_KEY=
+
+
+PAYPAL_CLIENT_ID=
+PAYPAL_SECRET_KEY=
+
+
+# ORANGE MONEY
+ORANGE_MONEY_TOKEN=
+ORANGE_MONEY_MARCHAND_KEY=
+
+
+
