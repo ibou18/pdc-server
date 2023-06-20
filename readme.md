@@ -1,8 +1,8 @@
-## Lagui+ Server APi
+## Server APi basé sur Lagui+
 
-Bienvenue sur l'API REST dédiée à la gestion d'un système de VOD en ligne, développée sous Node.js et Express avec une base de données PostgreSQL et l'ORM Sequelize.
+Bienvenue sur l'API REST dédiée à la gestion d'un système de gestion, développée sous Node.js et Express avec une base de données PostgreSQL et l'ORM Sequelize.
 
-Cette API fournit une interface pour la gestion des utilisateurs, des films et des séries proposés sur votre plateforme de VOD. Elle permet de réaliser des opérations CRUD (Create, Read, Update, Delete) sur ces différentes entités.
+Cette API fournit une interface pour la gestion des utilisateurs, des publications et des comptes rendus. Elle permet de réaliser des opérations CRUD (Create, Read, Update, Delete) sur ces différentes entités.
 
 Les routes sont sécurisées avec des tokens d'authentification JWT, permettant ainsi de limiter l'accès aux fonctionnalités de l'API à des utilisateurs authentifiés.
 
