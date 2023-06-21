@@ -53,17 +53,21 @@ class AdherentRoute extends BaseRoute {
       }
     });
 
-    route.get("/get-detail-client/:clientId", async (req, res) => {
-      const clientId = req.params.clientId;
+    route.get("/get-detail-adherent/:adherentId", async (req, res) => {
+      const adherentId = req.params.adherentId;
 
       try {
-        const client = await adherentModel.findOne({ where: { id: clientId } });
-        const paiement = await PaiementModel.findAll({
-          where: { clientId: clientId },
-          include: [{ model: db.publications }, { model: db.clients }],
+        const adherent = await adherentModel.findOne({
+          where: { id: adherentId },
         });
-        const totalPaiement = PaiementModel.count({ where: { id: clientId } });
-        const data = { client, paiement, total_paiement: totalPaiement };
+        const paiement = await PaiementModel.findAll({
+          where: { adherentId: adherentId },
+          include: [{ model: db.adherents }],
+        });
+        const totalPaiement = PaiementModel.count({
+          where: { id: adherentId },
+        });
+        const data = { adherent };
 
         res.status(200).send({ data: data });
       } catch (error) {
