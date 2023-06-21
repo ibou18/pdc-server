@@ -8,6 +8,7 @@ const sendEmail = require("../utils/sendEmail");
 const handlebars = require("handlebars");
 const fs = require("fs");
 const path = require("path");
+const generateString = require("../utils/generateString");
 
 const emailTemplate = fs.readFileSync(
   path.join(__dirname, "../utils/index.handlebars"),
@@ -22,13 +23,52 @@ const createToken = (id) => {
 };
 
 router.post("/register-adherent", async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    adresse,
+    birth_date,
+    birthday_location,
+    phone,
+    profession,
+    citizen,
+    province,
+    civil_status,
+    gradutation,
+    politic_member,
+    motivations,
+    amitions,
+    is_sign_declaration,
+    isActive,
+  } = req.body;
+  const unique =
+    firstName.substring(0, 2) +
+    lastName.substring(0, 2) +
+    generateString(8).code;
+
   try {
     const data = await adherentModel.create({
       firstName,
       lastName,
       email,
       password,
+      identifiant: unique,
+      adresse,
+      birth_date,
+      birthday_location,
+      phone,
+      profession,
+      citizen,
+      province,
+      civil_status,
+      gradutation,
+      politic_member,
+      motivations,
+      amitions,
+      is_sign_declaration,
+      isActive,
     });
     return res.status(200).send({
       status: "success",

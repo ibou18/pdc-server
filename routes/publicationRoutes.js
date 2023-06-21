@@ -84,6 +84,7 @@ class PublicationRoute extends BaseRoutes {
       }
     });
 
+    // Need to be modified
     route.get("/publications-by-admins/:id", async (req, res) => {
       try {
         const data = await publicationModel.findAll({
