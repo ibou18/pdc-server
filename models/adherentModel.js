@@ -10,6 +10,9 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      image: {
+        type: Sequelize.STRING,
+      },
       lastName: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -49,6 +52,15 @@ module.exports = (sequelize, Sequelize) => {
       province: {
         type: Sequelize.STRING,
       },
+      country: {
+        type: Sequelize.STRING,
+      },
+      city: {
+        type: Sequelize.STRING,
+      },
+      postal_code: {
+        type: Sequelize.STRING,
+      },
       civil_status: {
         type: Sequelize.ENUM("Marié", "Divorcé", "Célibataire"),
       },
@@ -59,10 +71,13 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      is_previously_politic: {
+        type: Sequelize.BOOLEAN,
+      },
       motivations: {
         type: Sequelize.STRING,
       },
-      amitions: {
+      ambitions: {
         type: Sequelize.STRING,
         allowNull: true,
       },

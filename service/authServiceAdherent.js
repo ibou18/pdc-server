@@ -8,6 +8,7 @@ const sendEmail = require("../utils/sendEmail");
 const handlebars = require("handlebars");
 const fs = require("fs");
 const path = require("path");
+const { uploadImage } = require("../middlewares/uploadImage");
 const generateString = require("../utils/generateString");
 
 const emailTemplate = fs.readFileSync(
@@ -22,34 +23,41 @@ const createToken = (id) => {
   });
 };
 
-router.post("/register-adherent", async (req, res) => {
-  const {
-    firstName,
-    lastName,
-    email,
-    password,
-    adresse,
-    birth_date,
-    birthday_location,
-    phone,
-    profession,
-    citizen,
-    province,
-    civil_status,
-    gradutation,
-    politic_member,
-    motivations,
-    amitions,
-    is_sign_declaration,
-    isActive,
-  } = req.body;
-  const unique =
-    firstName.substring(0, 2) +
-    lastName.substring(0, 2) +
-    generateString(8).code;
+router.post(
+  "/register-adherent",
+  uploadImage.single("file"),
+  async (req, res) => {
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      adresse,
+      birth_date,
+      birthday_location,
+      phone,
+      profession,
+      citizen,
+      province,
+      civil_status,
+      gradutation,
+      politic_member,
+      motivations,
+      ambitions,
+      is_sign_declaration,
+      isActive,
+      country,
+      city,
+      postal_code,
+      is_previously_politic,
+    } = req.body;
 
-  try {
-    const data = await adherentModel.create({
+    const unique =
+      firstName.substring(0, 2) +
+      lastName.substring(0, 2) +
+      generateString(8).code;
+
+    const form = {
       firstName,
       lastName,
       email,
@@ -66,23 +74,36 @@ router.post("/register-adherent", async (req, res) => {
       gradutation,
       politic_member,
       motivations,
-      amitions,
+      ambitions,
       is_sign_declaration,
-      isActive,
-    });
-    return res.status(200).send({
-      status: "success",
-      message: "data created successful",
-      data: data,
-    });
-  } catch (error) {
-    return res.status(400).send({
-      status: "error",
-      message: `Erreur un problème est survenu lors de l'opération`,
-      data: error,
-    });
+      isActive: false,
+      country,
+      city,
+      postal_code,
+      is_previously_politic,
+    };
+
+    console.log("req.file", req.file);
+    try {
+      if (req.file?.location) {
+        form.image = req.file.location;
+      }
+      const data = await adherentModel.create(form);
+
+      return res.status(200).send({
+        status: "success",
+        message: "data created successful",
+        data: data,
+      });
+    } catch (error) {
+      return res.status(400).send({
+        status: "error",
+        message: `Erreur un problème est survenu lors de l'opération`,
+        data: error,
+      });
+    }
   }
-});
+);
 
 router.post("/forgot-password", async (req, res, next) => {
   let user = await adherentModel.findOne({ where: { email: req.body.email } });
