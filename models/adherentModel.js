@@ -51,6 +51,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       province: {
         type: Sequelize.STRING,
+        allowNull: true,
       },
       country: {
         type: Sequelize.STRING,
@@ -60,12 +61,14 @@ module.exports = (sequelize, Sequelize) => {
       },
       postal_code: {
         type: Sequelize.STRING,
+        allowNull: true,
       },
       civil_status: {
         type: Sequelize.ENUM("Marié", "Divorcé", "Célibataire"),
       },
       gradutation: {
         type: Sequelize.STRING,
+        allowNull: true,
       },
       politic_member: {
         type: Sequelize.STRING,
@@ -73,9 +76,11 @@ module.exports = (sequelize, Sequelize) => {
       },
       is_previously_politic: {
         type: Sequelize.BOOLEAN,
+        allowNull: true,
       },
       motivations: {
         type: Sequelize.STRING,
+        allowNull: true,
       },
       ambitions: {
         type: Sequelize.STRING,
@@ -83,6 +88,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       is_sign_declaration: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       identifiant: {
         type: Sequelize.STRING,
@@ -94,7 +100,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       image: {
         type: Sequelize.STRING,
-        // allowNull: true,
+        allowNull: true,
       },
       isActive: {
         type: Sequelize.BOOLEAN,
@@ -117,15 +123,35 @@ module.exports = (sequelize, Sequelize) => {
       },
       ref_2: {
         type: Sequelize.STRING,
+        allowNull: true,
       },
       ref_3: {
         type: Sequelize.STRING,
+        allowNull: true,
       },
       ref_4: {
         type: Sequelize.STRING,
+        allowNull: true,
       },
       ref_5: {
         type: Sequelize.STRING,
+        allowNull: true,
+      },
+      ref_6: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      ref_7: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      ref_8: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      ref_9: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       // zone_id: {
       //   type: Sequelize.INTEGER,

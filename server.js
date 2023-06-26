@@ -5,7 +5,6 @@ const db = require("./configs/db");
 db.sequelize.sync();
 const cors = require("cors");
 const app = express();
-// const bodyParser = require("body-parser");
 const path = require("path");
 
 const { swaggerDocs: V1SwaggerDocs } = require("./v1/swagger");
