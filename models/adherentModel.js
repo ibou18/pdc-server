@@ -113,7 +113,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
           notEmpty: true,
           // is: "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$",
