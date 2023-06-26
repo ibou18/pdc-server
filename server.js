@@ -27,6 +27,7 @@ const ContactService = require("./service/contactService");
 
 var whitelist = [
   "https://pdc-client.vercel.app",
+  "https://pdc-client.vercel.app/",
   "http://localhost:3000",
   "http://localhost:19006",
   "http://localhost:3001",
