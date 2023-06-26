@@ -61,7 +61,7 @@ router.post(
       firstName,
       lastName,
       email,
-      password,
+      password: "Test1234",
       identifiant: unique,
       adresse,
       birth_date,
