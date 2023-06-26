@@ -26,10 +26,7 @@ const ContactService = require("./service/contactService");
 // const { checkUser, requireAuth } = require("./middleware/auth.middleware");
 
 var whitelist = [
-  "https://cinema-client-psi.vercel.app",
-  "https://lagui-admin.vercel.app",
-  "https://lagui-admin.vercel.app/",
-  "https://cinema-client-git-env-dev-laguidev.vercel.app",
+  "https://pdc-client.vercel.app",
   "http://localhost:3000",
   "http://localhost:19006",
   "http://localhost:3001",
