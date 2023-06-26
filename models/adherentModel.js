@@ -78,6 +78,7 @@ module.exports = (sequelize, Sequelize) => {
       is_previously_politic: {
         type: Sequelize.BOOLEAN,
         allowNull: true,
+        default: false,
       },
       motivations: {
         type: Sequelize.STRING,
