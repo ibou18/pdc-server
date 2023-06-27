@@ -50,12 +50,13 @@ router.post(
       city,
       postal_code,
       is_previously_politic,
+      indicatif,
     } = req.body;
 
     const unique =
-      firstName.substring(0, 2) +
-      lastName.substring(0, 2) +
-      generateString(8).code;
+      firstName.substring(0, 2).toLowerCase() +
+      lastName.substring(0, 2).toLowerCase() +
+      generateString(5).code;
 
     const form = {
       firstName,
@@ -76,11 +77,12 @@ router.post(
       motivations,
       ambitions,
       is_sign_declaration,
-      isActive: false,
+      isActive: true,
       country,
       city,
       postal_code,
       is_previously_politic,
+      indicatif,
     };
 
     console.log("req.file", req.file);
