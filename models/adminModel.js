@@ -20,7 +20,7 @@ module.exports = (sequelize, Sequelize) => {
       display_name: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: "Lagui +",
+        defaultValue: "-",
       },
       firstName: {
         type: Sequelize.STRING,
@@ -83,7 +83,6 @@ module.exports = (sequelize, Sequelize) => {
       ref_5: {
         type: Sequelize.STRING,
       },
-
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -97,11 +96,13 @@ module.exports = (sequelize, Sequelize) => {
       hooks: {
         beforeCreate: async (user) => {
           if (user.password) {
+            console.log("🆘user", user);
             const salt = await bcrypt.genSalt();
             user.password = bcrypt.hashSync(user.password, salt);
           }
         },
         beforeUpdate: async (user) => {
+          console.log("user", user);
           if (user.password) {
             const salt = await bcrypt.genSalt();
             user.password = bcrypt.hashSync(user.password, salt);

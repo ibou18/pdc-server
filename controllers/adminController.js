@@ -2,8 +2,11 @@ const db = require("../configs/db");
 const BaseController = require("../packages/BaseController");
 
 class AdminController extends BaseController {
-  constructor(AdminModel) {
-    super(AdminModel);
+  model;
+  includes = [];
+  constructor(model) {
+    super(model);
+    this.model = model;
   }
 }
 
