@@ -37,6 +37,7 @@ var whitelist = [
   "https://client-lagui.vercel.app",
   "https://cine-admin.vercel.app",
   "https://mpayment.orange-money.com",
+  "https://admin.pdc-gn.com",
 ];
 
 console.log("Demarrage");
