@@ -69,6 +69,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       civil_status: {
         type: Sequelize.ENUM("Marié", "Divorcé", "Célibataire"),
+        allowNull: true,
       },
       gradutation: {
         type: Sequelize.STRING,
