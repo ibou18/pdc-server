@@ -62,12 +62,13 @@ class AdherentRoute extends BaseRoute {
         });
         const paiement = await PaiementModel.findAll({
           where: { adherentId: adherentId },
-          include: [{ model: db.adherents }],
+          // include: [{ model: db.adherents }],
         });
         const totalPaiement = PaiementModel.count({
           where: { id: adherentId },
         });
-        const data = { adherent };
+
+        const data = { adherent, paiement, totalPaiement };
 
         res.status(200).send({ data: data });
       } catch (error) {

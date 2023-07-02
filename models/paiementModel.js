@@ -8,6 +8,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+
     amount_paid: {
       type: Sequelize.FLOAT,
       allowNull: false,
@@ -19,10 +20,6 @@ module.exports = (sequelize, Sequelize) => {
     },
     devise: {
       type: Sequelize.STRING,
-      allowNull: false,
-    },
-    day_active: {
-      type: Sequelize.INTEGER,
       allowNull: false,
     },
     start_date: {
@@ -37,6 +34,10 @@ module.exports = (sequelize, Sequelize) => {
     financial_transaction: {
       type: Sequelize.STRING,
       allowNull: true,
+    },
+    comments: {
+      type: Sequelize.STRING,
+      allowNull: false,
     },
     createdAt: {
       allowNull: false,
