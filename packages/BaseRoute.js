@@ -62,7 +62,6 @@ class BaseRoutes {
     router.patch("/:id", async (req, res) => {
       try {
         const data = await controller.updateOne(req.params.id, req.body);
-        console.log("🚀 data", data);
         return res.status(200).send({
           status: "success",
           message: "data updated successfully",

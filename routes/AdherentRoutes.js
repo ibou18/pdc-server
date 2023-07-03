@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const db = require("../configs/db");
 const adherentController = require("../controllers/adherentController");
+const { uploadImage } = require("../middlewares/uploadImage");
 
 const BaseRoute = require("../packages/BaseRoute");
 const adherentModel = db.adherents;
@@ -53,6 +54,47 @@ class AdherentRoute extends BaseRoute {
       }
     });
 
+    route.patch("/:id", uploadImage.single("file"), async (req, res) => {
+      const form = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        adresse: req.body.adresse,
+        Birth_date: req.body.birth_date,
+        birthday_location: req.body.birthday_location,
+        email: req.body.email,
+        phone: req.body.phone,
+        indicatif: req.body.indicatif,
+        profession: req.body.profession,
+        citizen: req.body.citizen,
+        province: req.body.province,
+        country: req.body.country,
+        city: req.body.city,
+        postal_code: req.body.postal_code,
+        civil_status: req.body.civil_status,
+        gradutation: req.body.gradutation,
+        politic_member: req.body.politic_member,
+        is_previously_politic: req.body.is_previously_politic,
+        motivations: req.body.motivations,
+        ambitions: req.body.ambitions,
+        is_sign_declaration: req.body.is_sign_declaration,
+        identifiant: req.body.identifiant,
+        isActive: req.body.isActive,
+        password: req.body.password,
+      };
+      if (req.file?.location) {
+        form.image = req.file.location;
+      }
+      const data = await adherentModel.update(form, {
+        where: { id: req.params.id },
+      });
+
+      return res.status(200).send({
+        status: "success",
+        message: "🚀 Data Updated successfully",
+        data: data,
+      });
+    });
+
     route.get("/get-detail-adherent/:adherentId", async (req, res) => {
       const adherentId = req.params.adherentId;
 
@@ -67,9 +109,7 @@ class AdherentRoute extends BaseRoute {
         const totalPaiement = PaiementModel.count({
           where: { id: adherentId },
         });
-
         const data = { adherent, paiement, totalPaiement };
-
         res.status(200).send({ data: data });
       } catch (error) {
         console.log("error", error);
