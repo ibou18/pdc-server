@@ -81,13 +81,15 @@ router.post(
       is_sign_declaration,
       isActive: true,
       country,
-      city,
+      city: !!city ? city : prefecture,
       postal_code,
       is_previously_politic,
       indicatif,
       prefecture,
       commune,
     };
+
+    console.log("city", city);
 
     console.log("req.file", req.file);
     try {

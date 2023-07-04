@@ -68,7 +68,7 @@ class AdherentRoute extends BaseRoute {
         citizen: req.body.citizen,
         province: req.body.province,
         country: req.body.country,
-        city: req.body.city,
+        city: !!req.body.city ? req.body.city : req.body.prefecture,
         postal_code: req.body.postal_code,
         civil_status: req.body.civil_status,
         gradutation: req.body.gradutation,
@@ -83,6 +83,7 @@ class AdherentRoute extends BaseRoute {
         commune: req.body.commune,
         prefecture: req.body.prefecture,
       };
+
       if (req.file?.location) {
         form.image = req.file.location;
       }

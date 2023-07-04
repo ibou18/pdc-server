@@ -62,6 +62,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       city: {
         type: Sequelize.STRING,
+        allowNull: true,
       },
       postal_code: {
         type: Sequelize.STRING,
