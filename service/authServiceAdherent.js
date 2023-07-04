@@ -51,6 +51,8 @@ router.post(
       postal_code,
       is_previously_politic,
       indicatif,
+      prefecture,
+      commune,
     } = req.body;
 
     const unique =
@@ -83,6 +85,8 @@ router.post(
       postal_code,
       is_previously_politic,
       indicatif,
+      prefecture,
+      commune,
     };
 
     console.log("req.file", req.file);

@@ -75,6 +75,14 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      prefecture: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      commune: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       politic_member: {
         type: Sequelize.STRING,
         allowNull: true,

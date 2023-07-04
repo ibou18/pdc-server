@@ -80,6 +80,8 @@ class AdherentRoute extends BaseRoute {
         identifiant: req.body.identifiant,
         isActive: req.body.isActive,
         password: req.body.password,
+        commune: req.body.commune,
+        prefecture: req.body.prefecture,
       };
       if (req.file?.location) {
         form.image = req.file.location;
