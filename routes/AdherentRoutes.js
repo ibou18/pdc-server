@@ -87,6 +87,11 @@ class AdherentRoute extends BaseRoute {
       if (req.file?.location) {
         form.image = req.file.location;
       }
+
+      if (form.password) {
+        const salt = await bcrypt.genSalt();
+        form.password = bcrypt.hashSync(form.password, salt);
+      }
       const data = await adherentModel.update(form, {
         where: { id: req.params.id },
       });
