@@ -135,8 +135,9 @@ module.exports = (sequelize, Sequelize) => {
           },
         },
       },
-      ref_2: {
+      roles: {
         type: Sequelize.STRING,
+        defaultValue: "adherent",
         allowNull: true,
       },
       ref_3: {

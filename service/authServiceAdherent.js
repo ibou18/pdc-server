@@ -46,6 +46,7 @@ router.post(
       ambitions,
       is_sign_declaration,
       isActive,
+      roles,
       country,
       city,
       postal_code,
@@ -80,6 +81,7 @@ router.post(
       ambitions,
       is_sign_declaration,
       isActive: true,
+      roles,
       country,
       city: !!city ? city : prefecture,
       postal_code,
@@ -89,9 +91,6 @@ router.post(
       commune,
     };
 
-    console.log("city", city);
-
-    console.log("req.file", req.file);
     try {
       if (req.file?.location) {
         form.image = req.file.location;
