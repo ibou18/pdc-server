@@ -6,7 +6,7 @@ const { uploadImage } = require("../middlewares/uploadImage");
 const BaseRoute = require("../packages/BaseRoute");
 const adherentModel = db.adherents;
 const PaiementModel = db.paiements;
-const PublicationModel = db.publications;
+
 const createToken = require("../utils/createToken");
 const bcrypt = require("bcrypt");
 const maxAge = 3 * 24 * 60 * 60 * 1000;

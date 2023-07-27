@@ -41,15 +41,30 @@ db.admin = require("../models/adminModel")(sequelize, Sequelize);
 db.adherents = require("../models/adherentModel")(sequelize, Sequelize);
 db.countries = require("../models/country")(sequelize, Sequelize);
 db.paiements = require("../models/paiementModel")(sequelize, Sequelize);
+db.article = require("../models/articleModel")(sequelize, Sequelize);
+db.comments = require("../models/commentModel")(sequelize, Sequelize);
 
 // --------------------
 
 // Declaration des relations entre les models'
 
 db.adherents.hasMany(db.paiements);
+db.article.hasMany(db.comments);
 db.paiements.belongsTo(db.adherents);
 
 db.admin.hasOne(db.publications, {
+  foreignKey: {
+    allowNull: true, // permet à la clé étrangère d'être null
+  },
+});
+
+db.article.hasOne(db.adherents, {
+  foreignKey: {
+    allowNull: true, // permet à la clé étrangère d'être null
+  },
+});
+
+db.comments.hasOne(db.adherents, {
   foreignKey: {
     allowNull: true, // permet à la clé étrangère d'être null
   },

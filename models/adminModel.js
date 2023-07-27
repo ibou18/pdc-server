@@ -55,7 +55,6 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         values: ["admin", "producteur", "superviseur", "partenaire"],
       },
-
       password: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -67,7 +66,6 @@ module.exports = (sequelize, Sequelize) => {
           },
         },
       },
-
       ref_1: {
         type: Sequelize.STRING,
       },
