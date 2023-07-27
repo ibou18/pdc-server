@@ -49,7 +49,7 @@ db.comments = require("../models/commentModel")(sequelize, Sequelize);
 // Declaration des relations entre les models'
 
 db.adherents.hasMany(db.paiements);
-db.article.hasMany(db.comments);
+// db.article.hasMany(db.comments);
 db.paiements.belongsTo(db.adherents);
 
 db.admin.hasOne(db.publications, {
@@ -58,17 +58,11 @@ db.admin.hasOne(db.publications, {
   },
 });
 
-db.article.hasOne(db.adherents, {
-  foreignKey: {
-    allowNull: true, // permet à la clé étrangère d'être null
-  },
-});
-
-db.comments.hasOne(db.adherents, {
-  foreignKey: {
-    allowNull: true, // permet à la clé étrangère d'être null
-  },
-});
+// db.article.hasOne(db.adherents, {
+//   foreignKey: {
+//     allowNull: true, // permet à la clé étrangère d'être null
+//   },
+// });
 
 db.publications.belongsTo(db.admin);
 

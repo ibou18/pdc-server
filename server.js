@@ -87,8 +87,8 @@ app.use("/api/v1/orange-money", orangeMoney);
 app.use("/api/v1/auth/admins", AuthService);
 app.use("/api/v1/auth/adherents", AuthServiceAdherent);
 app.use("/api/v1/contacts", ContactService);
-app.use("/api/v1/comments", CommentRoutes);
-app.use("/api/v1/articles", ArticleRoutes);
+// app.use("/api/v1/comments", CommentRoutes);
+// app.use("/api/v1/articles", ArticleRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`🎉 API is listening on port ${process.env.PORT}`);

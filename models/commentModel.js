@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
     },
     comment: {
-      type: Sequelize.TEXT,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     createdAt: {
