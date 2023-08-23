@@ -35,7 +35,6 @@ var whitelist = [
   "http://localhost:3001",
   "http://192.168.2.114:3000",
   "https://client-lagui.vercel.app",
-  "https://cine-admin.vercel.app",
   "https://mpayment.orange-money.com",
   "https://admin.pdc-gn.com",
 ];
