@@ -1,4 +1,4 @@
-const pg = require("pg");
+var pg = require("pg");
 pg.defaults.ssl = true;
 const Sequelize = require("sequelize");
 
@@ -9,7 +9,7 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     host: process.env.DB_HOST,
-    // port: process.env.DB_PORT,
+    port: process.env.DB_PORT,
     dialect: "postgres",
     operatorsAliases: 0,
     dialectOptions: {
@@ -32,38 +32,48 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 // ----------------
 
-// Import des models (il Creer s'il existe pas dans la DB)
+// Import des models (il Crée s'il n'existe pas dans la DB)
 db.userTemps = require("../models/userTempModel")(sequelize, Sequelize);
 db.categories = require("../models/categoryModel")(sequelize, Sequelize);
 db.types = require("../models/typeModel")(sequelize, Sequelize);
 db.publications = require("../models/publicationModel")(sequelize, Sequelize);
-db.admin = require("../models/adminModel")(sequelize, Sequelize);
-db.adherents = require("../models/adherentModel")(sequelize, Sequelize);
+db.admins = require("../models/adminModel")(sequelize, Sequelize);
+
 db.countries = require("../models/country")(sequelize, Sequelize);
 db.paiements = require("../models/paiementModel")(sequelize, Sequelize);
-db.article = require("../models/articleModel")(sequelize, Sequelize);
-db.comments = require("../models/commentModel")(sequelize, Sequelize);
 
 // --------------------
 
 // Declaration des relations entre les models'
 
-db.adherents.hasMany(db.paiements);
-// db.article.hasMany(db.comments);
-db.paiements.belongsTo(db.adherents);
+// categorie and publications
 
-db.admin.hasOne(db.publications, {
+db.publications.belongsTo(db.categories);
+
+// types and publications
+db.types.belongsToMany(db.publications, {
+  through: "publication_type",
+  as: "publications",
+  foreignKey: "type_id",
+});
+db.publications.belongsToMany(db.types, {
+  through: "publication_type",
+  as: "types",
+  foreignKey: "publication_id",
+});
+
+// planTarifaire et publication
+
+// paiements clients films
+db.publications.hasMany(db.paiements);
+db.paiements.belongsTo(db.publications);
+
+db.admins.hasOne(db.publications, {
   foreignKey: {
     allowNull: true, // permet à la clé étrangère d'être null
   },
 });
 
-// db.article.hasOne(db.adherents, {
-//   foreignKey: {
-//     allowNull: true, // permet à la clé étrangère d'être null
-//   },
-// });
-
-db.publications.belongsTo(db.admin);
+db.publications.belongsTo(db.admins);
 
 module.exports = db;

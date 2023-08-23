@@ -23,7 +23,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
     },
     start_date: {
-      allowNull: false,
+      allowNull: true,
       type: Sequelize.DATE,
     },
     adminId: {
@@ -37,7 +37,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     comments: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     createdAt: {
       allowNull: false,

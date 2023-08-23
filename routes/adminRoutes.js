@@ -50,6 +50,7 @@ class AdminRoute extends BaseRoute {
     });
 
     route.post("/create-admin", async (req, res) => {
+      console.log("🤣🤣🤣");
       try {
         let form = {
           email: req.body.email,
@@ -70,7 +71,7 @@ class AdminRoute extends BaseRoute {
         console.log("Error ", error);
         return res.status(400).send({
           status: "error",
-          message: `Erreur un problème est survenu lors de l'opération`,
+          message: `erreur`,
           data: error,
         });
       }
