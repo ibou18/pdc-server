@@ -2,7 +2,7 @@ class BaseController {
   model;
   constructor(model) {
     this.model = model;
-    console.log("model : ", model);
+    console.log("🟠 model - ", model);
   }
 
   async createOne(payload) {

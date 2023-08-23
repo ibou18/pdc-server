@@ -8,15 +8,14 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
-
     amount_paid: {
       type: Sequelize.FLOAT,
-      allowNull: false,
+      allowNull: true,
     },
     status: {
       type: Sequelize.BOOLEAN,
       defaultValue: false,
-      allowNull: false,
+      allowNull: true,
     },
     devise: {
       type: Sequelize.STRING,
@@ -37,7 +36,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     comments: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     createdAt: {
       allowNull: false,

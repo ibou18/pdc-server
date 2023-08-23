@@ -42,8 +42,6 @@ db.adherents = require("../models/adherentModel")(sequelize, Sequelize);
 db.countries = require("../models/country")(sequelize, Sequelize);
 db.paiements = require("../models/paiementModel")(sequelize, Sequelize);
 
-// --------------------
-
 // Declaration des relations entre les models'
 
 db.adherents.hasMany(db.paiements);
