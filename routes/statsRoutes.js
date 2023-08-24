@@ -309,11 +309,6 @@ class StatsRoute extends BaseRoute {
             // data: Fria,
           },
           {
-            name: "Fria",
-            count: FriaCount,
-            // data: Fria,
-          },
-          {
             name: "Gaoual",
             count: GaoualCount,
             // data: Gaoual,
@@ -367,21 +362,6 @@ class StatsRoute extends BaseRoute {
             name: "Labé",
             count: LabéCount,
             // data: Labé,
-          },
-          {
-            name: "Labé",
-            count: LabéCount,
-            // data: Labé,
-          },
-          {
-            name: "Labé",
-            count: LabéCount,
-            // data: Labé,
-          },
-          {
-            name: "Lélouma",
-            count: LéloumaCount,
-            // data: Lélouma,
           },
           {
             name: "Lélouma",

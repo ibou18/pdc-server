@@ -13,7 +13,10 @@ class PaiementRoute extends BaseRoute {
   constructor(route, controller) {
     route.get("/", async (req, res) => {
       try {
-        const data = await PaiementModel.findAll();
+        const data = await PaiementModel.findAll({
+          include: [{ model: db.adherents }],
+        });
+        console.log("data :>> ", data);
 
         return res.status(200).send({
           status: "success",
