@@ -27,7 +27,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     adminId: {
       type: Sequelize.INTEGER,
-      references: { model: "admins", key: "id" },
+      references: { model: "adherents", key: "id" },
       allowNull: true,
     },
     financial_transaction: {

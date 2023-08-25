@@ -33,16 +33,20 @@ db.sequelize = sequelize;
 // ----------------
 
 // Import des models (il Creer s'il existe pas dans la DB)
-db.userTemps = require("../models/userTempModel")(sequelize, Sequelize);
-db.categories = require("../models/categoryModel")(sequelize, Sequelize);
+// db.userTemps = require("../models/userTempModel")(sequelize, Sequelize);
+// db.categories = require("../models/categoryModel")(sequelize, Sequelize);
 db.types = require("../models/typeModel")(sequelize, Sequelize);
 db.publications = require("../models/publicationModel")(sequelize, Sequelize);
 db.admin = require("../models/adminModel")(sequelize, Sequelize);
 db.adherents = require("../models/adherentModel")(sequelize, Sequelize);
 db.countries = require("../models/country")(sequelize, Sequelize);
 db.paiements = require("../models/paiementModel")(sequelize, Sequelize);
+db.reports = require("../models/reportModel")(sequelize, Sequelize);
 
 // Declaration des relations entre les models'
+
+db.adherents.hasMany(db.reports);
+db.reports.belongsTo(db.adherents);
 
 db.adherents.hasMany(db.paiements);
 db.paiements.belongsTo(db.adherents);
