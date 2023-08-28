@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { Op } = require("sequelize");
 const db = require("../configs/db");
 const adherentController = require("../controllers/adherentController");
 const { uploadImage } = require("../middlewares/uploadImage");
@@ -29,6 +30,26 @@ class AdherentRoute extends BaseRoute {
         }
         res.status(401).send({ status: "error", message: "Password is wrong" });
       }
+    });
+
+    route.get("/today", async (req, res) => {
+      const today = new Date();
+      today.setUTCHours(0, 0, 0, 0); // Set time to 00:00:00.000
+
+      const data = await adherentModel.findAll({
+        where: {
+          createdAt: {
+            [Op.gte]: today,
+          },
+        },
+      });
+
+      return res.status(200).send({
+        status: "success",
+        message: "🚀 Data Updated successfully",
+        total: data.length,
+        data: data,
+      });
     });
 
     route.post("/register", async (req, res) => {
