@@ -1,36 +1,25 @@
 module.exports = (sequelize, Sequelize) => {
-  const Report = sequelize.define("report", {
+  const Blog = sequelize.define("blog", {
     adherentId: {
       type: Sequelize.INTEGER,
       references: { model: "adherents", key: "id" },
       allowNull: true,
     },
-    objet: {
+    title: {
       type: Sequelize.STRING,
       allowNull: false,
     },
     description: {
       type: Sequelize.STRING,
     },
-    present: {
-      type: Sequelize.JSON,
-      allowNull: true,
-    },
-    actions: {
+    image: {
       type: Sequelize.JSON,
       allowNull: true,
     },
     status: {
       type: Sequelize.BOOLEAN,
       defaultValue: true,
-    },
-    nextDate: {
       allowNull: true,
-      type: Sequelize.DATE,
-    },
-    links: {
-      allowNull: true,
-      type: Sequelize.JSON,
     },
     createdAt: {
       allowNull: false,
@@ -41,5 +30,5 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.DATE,
     },
   });
-  return Report;
+  return Blog;
 };

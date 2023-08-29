@@ -1,18 +1,48 @@
 const router = require("express").Router();
-const reportController = require("../controllers/reportController.js");
-const BaseRoute = require("../packages/BaseRoute");
-const db = require("../configs/db");
-const { uploadImage, uploadReport } = require("../middlewares/uploadImage.js");
-const ReportModel = db.reports;
+const blogController = require("../controllers/BlogController");
+const BaseRoute = require("../packages/BaseRoute.js");
+const db = require("../configs/db.js");
+const { uploadImage, uploadReport } = require("../middlewares/uploadImage");
+const blogModel = db.blogs;
 
-class ReportRoute extends BaseRoute {
+class BlogRoute extends BaseRoute {
   includes = [{ model: db.adherents }];
   constructor(route, controller) {
     route.get("/", async (req, res) => {
       try {
-        const data = await ReportModel.findAll({
-          include: [{ model: db.adherents }],
+        const data = await blogModel.findAll({
+          include: [
+            {
+              model: db.adherents,
+              attributes: ["id", "firstName", "lastName", "image"],
+            },
+          ],
           order: [["createdAt", "DESC"]],
+        });
+
+        return res.status(200).send({
+          status: "success",
+          message: "data fetched successful",
+          data: data,
+        });
+      } catch (error) {
+        console.log("error :>> ", error);
+        res.status(400).send({
+          message: `Erreur requetes `,
+          data: error,
+        });
+      }
+    });
+    route.get("/:id", async (req, res) => {
+      try {
+        const data = await blogModel.findOne({
+          where: { id: req.params.id },
+          include: [
+            {
+              model: db.adherents,
+              attributes: ["id", "firstName", "lastName", "image"],
+            },
+          ],
         });
 
         return res.status(200).send({
@@ -30,40 +60,27 @@ class ReportRoute extends BaseRoute {
     });
 
     route.post("/create", uploadReport.single("file"), async (req, res) => {
-      const {
-        adherentId,
-        objet,
-        description,
-        present,
-        actions,
-        status,
-        title,
-        nextDate,
-      } = req.body;
+      const { adherentId, title, description, status } = req.body;
 
       const form = {
         adherentId,
-        objet,
-        description,
-        present,
-        actions,
-        status,
         title,
-        nextDate,
+        description,
+        status,
       };
       console.log("form", form);
       console.log("req.file.location", req.file.location);
 
       try {
         if (req.file?.location) {
-          form.links = [{ title, link: req.file.location }];
+          form.image = req.file.location;
         }
 
         if (form.adherentId) {
           form.adherentId = Number(form.adherentId);
         }
 
-        const data = await ReportModel.create(form);
+        const data = await blogModel.create(form);
 
         return res.status(200).send({
           status: "success",
@@ -84,6 +101,6 @@ class ReportRoute extends BaseRoute {
   }
 }
 
-new ReportRoute(router, reportController);
+new BlogRoute(router, blogController);
 
 module.exports = router;

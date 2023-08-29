@@ -10,10 +10,22 @@ aws.config.update({
 });
 
 s3 = new aws.S3();
+
 module.exports.uploadImage = multer({
   storage: multerS3({
     s3: s3,
     bucket: "pdc-laguidev/profil",
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    key: function (req, file, cb) {
+      cb(null, Date.now() + file.originalname);
+    },
+  }),
+});
+
+module.exports.uploadReport = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: "pdc-laguidev/docs",
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: function (req, file, cb) {
       cb(null, Date.now() + file.originalname);

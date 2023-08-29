@@ -120,7 +120,6 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
       },
-
       tokens: {
         type: Sequelize.STRING,
       },

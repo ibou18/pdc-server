@@ -24,6 +24,7 @@ const AuthService = require("./service/authService");
 const AuthServiceAdherent = require("./service/authServiceAdherent");
 const ContactService = require("./service/contactService");
 const ReportRoutes = require("./routes/reportRoutes");
+const BlogRoutes = require("./routes/blogRoutes");
 // const { checkUser, requireAuth } = require("./middleware/auth.middleware");
 
 var whitelist = [
@@ -87,6 +88,7 @@ app.use("/api/v1/auth/admins", AuthService);
 app.use("/api/v1/auth/adherents", AuthServiceAdherent);
 app.use("/api/v1/contacts", ContactService);
 app.use("/api/v1/reports", ReportRoutes);
+app.use("/api/v1/blogs", BlogRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`🎉 API is listening on port ${process.env.PORT}`);
