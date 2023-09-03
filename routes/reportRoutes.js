@@ -41,6 +41,10 @@ class ReportRoute extends BaseRoute {
         nextDate,
       } = req.body;
 
+      if (req.body.actions) {
+        JSON.parse(req.body.actions);
+      }
+
       const form = {
         adherentId,
         objet,
@@ -51,8 +55,10 @@ class ReportRoute extends BaseRoute {
         title,
         nextDate,
       };
-      console.log("form", form);
-      console.log("req.file.location", req.file.location);
+
+      if (form.actions) {
+        form.actions = JSON.parse(req.body.actions);
+      }
 
       try {
         if (req.file?.location) {

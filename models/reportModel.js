@@ -17,7 +17,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: true,
     },
     actions: {
-      type: Sequelize.JSON,
+      type: Sequelize.ARRAY(Sequelize.JSON),
       allowNull: true,
     },
     status: {
