@@ -121,6 +121,7 @@ router.post("/forgot-password", async (req, res, next) => {
       .status(400)
       .send({ status: "error", message: "Email non trouvable !" });
   }
+
   try {
     const resetToken = createToken(user.id);
     const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
@@ -130,6 +131,7 @@ router.post("/forgot-password", async (req, res, next) => {
       resetUrl: resetUrl,
       name: user?.firstName,
     });
+
     try {
       sendEmail({
         to: req.body.email,
@@ -137,7 +139,7 @@ router.post("/forgot-password", async (req, res, next) => {
         // text: message,
         text: messageBody,
       });
-      console.log("USer", user);
+
       adherentModel.update(
         {
           tokens: resetToken,
